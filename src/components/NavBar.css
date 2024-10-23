@@ -1,0 +1,125 @@
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  height: 100%;
+  width: 255px;
+  background-color: #764a9f;
+  padding-top: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: width 0.3s ease, left 0.3s ease;  /* Smooth transition */
+  box-shadow: 2px 0 5px rgb(255, 255, 255);
+}
+
+.sidebar.closed {
+  width: 80px;  /* Smaller width when closed */
+}
+
+.sidebar-header {
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.nav-links {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.nav-links li {
+  margin: 20px 0;
+}
+
+.nav-links li a {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  transition: background-color 0.3s, padding-left 0.3s;
+  border-radius: 8px;
+}
+
+.nav-links li a .icon {
+  margin-right: 15px;
+  font-size: 1.5rem;
+}
+
+.nav-links li a:hover {
+  background-color: #1ABC9C;
+  padding-left: 25px;  /* Subtle left padding effect on hover */
+}
+
+.nav-links li a span {
+  display: inline-block;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.closed .nav-links li a span {
+  opacity: 0;  /* Hide text when sidebar is closed */
+}
+
+.sidebar.closed .nav-links li a .icon {
+  margin-right: 0;  /* Adjust icon spacing when closed */
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+  position: absolute;
+  top: 20px;
+  left: px;  /* Adjust based on sidebar width */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1000;  /* Ensure the button is above other elements */
+  transition: left 0.3s ease;
+}
+
+.sidebar.closed + .sidebar-toggle {
+  left: 90px;  /* Adjust position when sidebar is closed */
+}
+
+/* Content Area Adjustments */
+.content {
+  margin-left: 240px;  /* Default margin with open sidebar */
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.closed ~ .content {
+  margin-left: 90px;  /* Adjust margin when sidebar is closed */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+  }
+
+  .sidebar.open {
+    width: 250px;
+  }
+
+  .sidebar-toggle {
+    left: 90px;
+  }
+
+  .sidebar.open + .sidebar-toggle {
+    left: 260px;
+  }
+
+  .content {
+    margin-left: 90px;
+  }
+
+  .sidebar.open ~ .content {
+    margin-left: 260px;
+  }
+}

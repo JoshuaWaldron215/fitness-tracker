@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
+import LogWorkout from './components/LogWorkout';
+import LogGoals from './components/LogGoals';
+import NavBar from './components/NavBar';
+import { WorkoutProvider } from './context/WorkoutContext';
+import './App.css';  // Import main CSS
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <WorkoutProvider>
+      <Router>
+        <div className="app-layout">
+          <NavBar />
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/log-workout" element={<LogWorkout />} />
+              <Route path="/log-goals" element={<LogGoals />} />
+            </Routes>
+          </div>
+        </div>
+      </Router>
+    </WorkoutProvider>
   );
-}
+};
 
 export default App;
+
+
+
+
+
+
+
